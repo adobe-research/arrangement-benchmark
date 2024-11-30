@@ -9,7 +9,7 @@ include(fast_arrangement)
 include(libigl)
 
 file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
-file(GLOB INC_FILES "${PROJECT_SOURCE_DIR}/include/PyMesh/*.h")
+file(GLOB INC_FILES "${PROJECT_SOURCE_DIR}/include/arrangement/*.h")
 
 add_library(arrangement STATIC ${SRC_FILES} ${INC_FILES})
 target_include_directories(arrangement PUBLIC 

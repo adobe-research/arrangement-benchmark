@@ -3,7 +3,7 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 
-namespace Arrangement {
+namespace arrangement {
 
 typedef double Float;
 typedef Eigen::VectorXd VectorF;
@@ -24,13 +24,13 @@ typedef Eigen::Matrix2i Matrix2I;
 typedef Eigen::Matrix3i Matrix3I;
 typedef Eigen::Matrix4i Matrix4I;
 
-typedef Eigen::Matrix<int  , Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> MatrixIr;
+typedef Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> MatrixIr;
 typedef Eigen::Matrix<Float, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> MatrixFr;
 
-typedef Eigen::Matrix<int  , Eigen::Dynamic, 2, Eigen::RowMajor> Matrix2Ir;
+typedef Eigen::Matrix<int, Eigen::Dynamic, 2, Eigen::RowMajor> Matrix2Ir;
 typedef Eigen::Matrix<Float, Eigen::Dynamic, 2, Eigen::RowMajor> Matrix2Fr;
-typedef Eigen::Matrix<int  , Eigen::Dynamic, 3, Eigen::RowMajor> Matrix3Ir;
+typedef Eigen::Matrix<int, Eigen::Dynamic, 3, Eigen::RowMajor> Matrix3Ir;
 typedef Eigen::Matrix<Float, Eigen::Dynamic, 3, Eigen::RowMajor> Matrix3Fr;
-typedef Eigen::Matrix<int  , Eigen::Dynamic, 4, Eigen::RowMajor> Matrix4Ir;
+typedef Eigen::Matrix<int, Eigen::Dynamic, 4, Eigen::RowMajor> Matrix4Ir;
 typedef Eigen::Matrix<Float, Eigen::Dynamic, 4, Eigen::RowMajor> Matrix4Fr;
-}
+} // namespace arrangement

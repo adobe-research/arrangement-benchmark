@@ -1,5 +1,5 @@
-#include <Arrangement/FastArrangement.h>
-#include <Arrangement/MatrixUtils.h>
+#include <arrangement/FastArrangement.h>
+#include <arrangement/MatrixUtils.h>
 
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 #include <CGAL/intersections.h>
@@ -17,7 +17,7 @@
 
 #include <chrono>
 
-using namespace Arrangement;
+using namespace arrangement;
 #ifdef __clang__
 __attribute__((optnone))
 #endif
@@ -46,7 +46,8 @@ void FastArrangement::run()
      * There are 4 versions of the solveIntersections function. Please
      * refer to the solve_intersections.h file to see how to use them. */
 
-    //igl::write_triangle_mesh("arrangement_debug.ply", m_vertices, m_faces, igl::FileEncoding::Binary);
+    // igl::write_triangle_mesh("arrangement_debug.ply", m_vertices, m_faces,
+    // igl::FileEncoding::Binary);
     point_arena arena;
     solveIntersections(in_coords, in_tris, in_labels, arena, gen_points, out_tris, out_labels);
 
@@ -55,10 +56,10 @@ void FastArrangement::run()
     // Copy source face labels over.
     assert(out_labels.size() == out_tris.size() / 3);
     m_out_face_labels.resize(out_labels.size());
-    for (size_t i=0; i<m_out_face_labels.size(); i++) {
+    for (size_t i = 0; i < m_out_face_labels.size(); i++) {
         const auto& bits = out_labels[i];
         m_out_face_labels[i] = max_label + 1;
-        for (size_t j=0; j<NBIT; j++) {
+        for (size_t j = 0; j < NBIT; j++) {
             if (bits[j]) {
                 m_out_face_labels[i] = static_cast<int>(j);
                 break;
@@ -152,7 +153,8 @@ void FastArrangement::run()
     igl::unique_edge_map(resolved_faces, E, uE, EMAP, uEC, uEE);
 
     // patches
-    const size_t num_patches = igl::extract_manifold_patches(resolved_faces, EMAP, uEC, uEE, m_patches);
+    const size_t num_patches =
+        igl::extract_manifold_patches(resolved_faces, EMAP, uEC, uEE, m_patches);
 
     // cells
     const size_t num_cells = igl::copyleft::cgal::extract_cells(

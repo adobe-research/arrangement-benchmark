@@ -1,8 +1,8 @@
-#include <Arrangement/Arrangement.h>
-#include <Arrangement/FastArrangement.h>
-#include <Arrangement/MeshArrangement.h>
+#include <arrangement/Arrangement.h>
+#include <arrangement/FastArrangement.h>
+#include <arrangement/MeshArrangement.h>
 
-using namespace Arrangement;
+using namespace arrangement;
 
 Arrangement::Ptr Arrangement::create_mesh_arrangement(
     const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels)

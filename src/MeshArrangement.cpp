@@ -1,6 +1,6 @@
 /* This file is part of Arrangement. Copyright (c) 2016 by Qingnan Zhou */
-#include <Arrangement/MeshArrangement.h>
-#include <Arrangement/MatrixUtils.h>
+#include <arrangement/MeshArrangement.h>
+#include <arrangement/MatrixUtils.h>
 
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 
@@ -14,7 +14,7 @@
 
 #include <chrono>
 
-using namespace Arrangement;
+using namespace arrangement;
 
 void MeshArrangement::run()
 {

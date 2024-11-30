@@ -3,19 +3,19 @@
 
 #include "EigenTypedef.h"
 
-namespace Arrangement {
+namespace arrangement {
 
 class Arrangement
 {
 public:
     typedef std::shared_ptr<Arrangement> Ptr;
     static Ptr create_mesh_arrangement(
-        const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels);
+        const MatrixFr &vertices, const MatrixIr &faces, const VectorI &face_labels);
     static Ptr create_fast_arrangement(
-        const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels);
+        const MatrixFr &vertices, const MatrixIr &faces, const VectorI &face_labels);
 
 public:
-    Arrangement(const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels)
+    Arrangement(const MatrixFr &vertices, const MatrixIr &faces, const VectorI &face_labels)
         : m_vertices(vertices)
         , m_faces(faces)
         , m_in_face_labels(face_labels)
@@ -24,9 +24,9 @@ public:
 
     virtual void run() = 0;
 
-    const MatrixFr& get_vertices() const { return m_vertices; }
-    const MatrixIr& get_faces() const { return m_faces; }
-    const VectorI& get_out_face_labels() const { return m_out_face_labels; }
+    const MatrixFr &get_vertices() const { return m_vertices; }
+    const MatrixIr &get_faces() const { return m_faces; }
+    const VectorI &get_out_face_labels() const { return m_out_face_labels; }
 
     size_t get_num_cells() const
     {
@@ -53,7 +53,7 @@ public:
         faces.conservativeResize(face_count, 3);
         return faces;
     }
-    const MatrixIr& get_cells() const { return m_cells; }
+    const MatrixIr &get_cells() const { return m_cells; }
 
     size_t get_num_patches() const
     {
@@ -62,9 +62,9 @@ public:
         else
             return 0;
     }
-    const VectorI& get_patches() const { return m_patches; }
+    const VectorI &get_patches() const { return m_patches; }
 
-    const MatrixIr& get_winding_number() const { return m_winding_number; }
+    const MatrixIr &get_winding_number() const { return m_winding_number; }
 
 protected:
     MatrixFr m_vertices;
@@ -76,5 +76,4 @@ protected:
     MatrixIr m_winding_number;
 };
 
-} // namespace Arrangement
-
+} // namespace arrangement
