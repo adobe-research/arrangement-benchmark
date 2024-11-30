@@ -1,9 +1,9 @@
-/* This file is part of PyMesh. Copyright (c) 2015 by Qingnan Zhou */
+/* This file is part of Arrangement. Copyright (c) 2015 by Qingnan Zhou */
 #pragma once
 
 #include <vector>
 
-namespace PyMesh {
+namespace Arrangement {
 namespace MatrixUtils {
     /**
      * This method stack multiple matrices into a single matrix by joining rows.

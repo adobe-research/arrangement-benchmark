@@ -1,5 +1,5 @@
-#include <PyMesh/FastArrangement.h>
-#include <PyMesh/MatrixUtils.h>
+#include <Arrangement/FastArrangement.h>
+#include <Arrangement/MatrixUtils.h>
 
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 #include <CGAL/intersections.h>
@@ -17,7 +17,7 @@
 
 #include <chrono>
 
-using namespace PyMesh;
+using namespace Arrangement;
 #ifdef __clang__
 __attribute__((optnone))
 #endif

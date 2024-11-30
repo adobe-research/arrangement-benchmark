@@ -1,8 +1,8 @@
-#include <PyMesh/Arrangement.h>
-#include <PyMesh/FastArrangement.h>
-#include <PyMesh/MeshArrangement.h>
+#include <Arrangement/Arrangement.h>
+#include <Arrangement/FastArrangement.h>
+#include <Arrangement/MeshArrangement.h>
 
-using namespace PyMesh;
+using namespace Arrangement;
 
 Arrangement::Ptr Arrangement::create_mesh_arrangement(
     const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels)

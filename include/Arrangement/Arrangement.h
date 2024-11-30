@@ -1,10 +1,9 @@
-/* This file is part of PyMesh. Copyright (c) 2016 by Qingnan Zhou */
 #pragma once
 #include <memory>
 
 #include "EigenTypedef.h"
 
-namespace PyMesh {
+namespace Arrangement {
 
 class Arrangement
 {
@@ -77,5 +76,5 @@ protected:
     MatrixIr m_winding_number;
 };
 
-} // namespace PyMesh
+} // namespace Arrangement
 

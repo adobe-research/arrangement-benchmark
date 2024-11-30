@@ -2,7 +2,7 @@
 
 #include "Arrangement.h"
 
-namespace PyMesh {
+namespace Arrangement {
 
 class FastArrangement final : public Arrangement
 {
@@ -30,4 +30,4 @@ private:
     using Base::m_winding_number;
 };
 
-} // namespace PyMesh
+} // namespace Arrangement

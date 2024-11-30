@@ -1,9 +1,8 @@
-/* This file is part of PyMesh. Copyright (c) 2015 by Qingnan Zhou */
 #include <sstream>
 #include "EigenTypedef.h"
 #include "Exception.h"
 
-using namespace PyMesh;
+using namespace Arrangement;
 
 template<typename T>
 T MatrixUtils::vstack(const std::vector<T>& matrices) {

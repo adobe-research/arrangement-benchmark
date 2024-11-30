@@ -1,15 +1,14 @@
-/* This file is part of PyMesh. Copyright (c) 2015 by Qingnan Zhou */
 #pragma once
 #include <exception>
 #include <string>
 
-namespace PyMesh {
+namespace Arrangement {
 
-class PyMeshException : public std::exception {
+class ArrangementException : public std::exception {
     public:
-        PyMeshException(const std::string& description) :
+        ArrangementException(const std::string& description) :
             exception(), m_description(description) {}
-        virtual ~PyMeshException() throw() {}
+        virtual ~ArrangementException() throw() {}
 
     public:
         virtual const char* what() const throw() {
@@ -20,24 +19,24 @@ class PyMeshException : public std::exception {
         std::string m_description;
 };
 
-class IOError : public PyMeshException {
+class IOError : public ArrangementException {
     public:
         IOError(const std::string& description) :
-            PyMeshException(description) {}
+            ArrangementException(description) {}
         virtual ~IOError() throw() {}
 };
 
-class RuntimeError : public PyMeshException {
+class RuntimeError : public ArrangementException {
     public:
         RuntimeError(const std::string& description) :
-            PyMeshException(description) {}
+            ArrangementException(description) {}
         virtual ~RuntimeError() throw() {}
 };
 
-class NotImplementedError : public PyMeshException {
+class NotImplementedError : public ArrangementException {
     public:
         NotImplementedError(const std::string& description) :
-            PyMeshException(description) {}
+            ArrangementException(description) {}
         virtual ~NotImplementedError() throw() {}
 };
 }
