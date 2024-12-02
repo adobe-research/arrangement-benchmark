@@ -45,7 +45,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "Ap
         -Wno-return-stack-address
     )
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compiler_options(fast_arrangement PRIVATE -Wno-return-local-addr)
+    target_compile_options(fast_arrangement PRIVATE -Wno-return-local-addr)
 endif()
 
 add_library(fast_arrangement::fast_arrangement ALIAS fast_arrangement)
