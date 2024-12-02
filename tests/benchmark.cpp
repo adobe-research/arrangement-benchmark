@@ -17,7 +17,7 @@ TEST_CASE("benchmark", "[arrangement][!benchmark]")
     Eigen::Vector3d axis(1, 2, 3);
     axis.normalize();
 
-    constexpr size_t N = 10;
+    constexpr size_t N = 5;
     arrangement::MatrixFr V(4 * N, 3);
     arrangement::MatrixIr F(4 * N, 3);
     arrangement::VectorI L(4 * N);
@@ -35,17 +35,17 @@ TEST_CASE("benchmark", "[arrangement][!benchmark]")
         igl::write_triangle_mesh("test.obj", engine->get_vertices(), engine->get_faces());
     }
 
-    //BENCHMARK("FastArrangement")
-    //{
-    //    auto engine = arrangement::Arrangement::create_fast_arrangement(V, F, L);
-    //    engine->run();
-    //    return std::make_tuple(engine->get_vertices(), engine->get_faces());
-    //};
+    BENCHMARK("FastArrangement")
+    {
+        auto engine = arrangement::Arrangement::create_fast_arrangement(V, F, L);
+        engine->run();
+        return std::make_tuple(engine->get_vertices(), engine->get_faces());
+    };
 
-    //BENCHMARK("MeshArrangement")
-    //{
-    //    auto engine = arrangement::Arrangement::create_mesh_arrangement(V, F, L);
-    //    engine->run();
-    //    return std::make_tuple(engine->get_vertices(), engine->get_faces());
-    //};
+    BENCHMARK("MeshArrangement")
+    {
+        auto engine = arrangement::Arrangement::create_mesh_arrangement(V, F, L);
+        engine->run();
+        return std::make_tuple(engine->get_vertices(), engine->get_faces());
+    };
 }
