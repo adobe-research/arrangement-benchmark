@@ -58,7 +58,7 @@ public:
     size_t get_num_patches() const
     {
         if (m_patches.size() > 0)
-            return m_patches.maxCoeff();
+            return m_patches.maxCoeff() + 1;
         else
             return 0;
     }

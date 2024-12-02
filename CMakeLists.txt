@@ -1,12 +1,18 @@
 cmake_minimum_required(VERSION 3.15)
 project(arrangement)
 
-
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 include(FetchContent)
 include(Eigen3)
 include(fast_arrangement)
 include(libigl)
+
+option(ARRANGEMENT_WITH_SANITIZERS "Enable sanitizers" OFF)
+if (ARRANGEMENT_WITH_SANITIZERS)
+    include(sanitizers)
+    add_sanitizer_support(address)
+endif()
 
 file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 file(GLOB INC_FILES "${PROJECT_SOURCE_DIR}/include/arrangement/*.h")

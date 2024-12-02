@@ -12,8 +12,8 @@ include(Eigen3)
 include(CPM)
 CPMAddPackage(
     NAME fast_arrangement
-    GITHUB_REPOSITORY gcherchi/FastAndRobustMeshArrangements
-    GIT_TAG bf7eb71da991a61ff5414946a4b2754bbd327e41
+    GITHUB_REPOSITORY qnzhou/FastAndRobustMeshArrangements
+    GIT_TAG dev
     DOWNLOAD_ONLY YES
 )
 
@@ -22,7 +22,8 @@ set(TBB_EXAMPLES OFF CACHE BOOL " " FORCE)
 add_subdirectory(${fast_arrangement_SOURCE_DIR}/external/oneTBB)
 
 add_library(fast_arrangement
-    ${cinolib_SOURCE_DIR}/external/shewchuk_predicates/shewchuk.c)
+    ${cinolib_SOURCE_DIR}/external/shewchuk_predicates/shewchuk.c
+)
 target_link_libraries(fast_arrangement
     PUBLIC Eigen3::Eigen indirect_predicates::indirect_predicates tbb)
 target_include_directories(fast_arrangement
@@ -39,7 +40,6 @@ endif()
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
     target_compile_options(fast_arrangement PRIVATE
-        -Wno-undefined-inline
         -Wno-deprecated-non-prototype
         -Wno-deprecated-builtins
         -Wno-return-stack-address
