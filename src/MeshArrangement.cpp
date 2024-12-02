@@ -1,6 +1,6 @@
 /* This file is part of Arrangement. Copyright (c) 2016 by Qingnan Zhou */
-#include <arrangement/MeshArrangement.h>
 #include <arrangement/MatrixUtils.h>
+#include <arrangement/MeshArrangement.h>
 
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 
@@ -63,7 +63,7 @@ void MeshArrangement::run()
 
         // Map face labels
         m_out_face_labels.resize(resolved_faces.rows());
-        for (Eigen::Index i=0; i<resolved_faces.rows(); i++) {
+        for (Eigen::Index i = 0; i < resolved_faces.rows(); i++) {
             m_out_face_labels[i] = m_in_face_labels[source_faces[i]];
         }
     }
@@ -76,7 +76,8 @@ void MeshArrangement::run()
     igl::unique_edge_map(resolved_faces, E, uE, EMAP, uEC, uEE);
 
     // patches
-    const size_t num_patches = igl::extract_manifold_patches(resolved_faces, EMAP, uEC, uEE, m_patches);
+    const size_t num_patches =
+        igl::extract_manifold_patches(resolved_faces, EMAP, uEC, uEE, m_patches);
 
     // cells
     const size_t num_cells = igl::copyleft::cgal::extract_cells(
@@ -99,10 +100,10 @@ void MeshArrangement::run()
         [](const ExactScalar& val) { return CGAL::to_double(val); });
     m_faces = resolved_faces;
 
-    //auto t_end = std::chrono::high_resolution_clock::now();
-    //std::chrono::duration<double> resolve_time = t_mid - t_begin;
-    //std::chrono::duration<double> extract_time = t_end - t_mid;
-    //std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() << std::endl;
-    //std::cout << "Arrangement: extracting arrangement: " << extract_time.count() << std::endl;
+    // auto t_end = std::chrono::high_resolution_clock::now();
+    // std::chrono::duration<double> resolve_time = t_mid - t_begin;
+    // std::chrono::duration<double> extract_time = t_end - t_mid;
+    // std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() <<
+    // std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
+    // std::endl;
 }
-
