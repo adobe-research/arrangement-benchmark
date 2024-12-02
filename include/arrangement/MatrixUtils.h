@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include <Eigen/Core>
+
 namespace arrangement {
 namespace MatrixUtils {
 /**

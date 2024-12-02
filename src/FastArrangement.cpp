@@ -74,6 +74,8 @@ void FastArrangement::run()
     MatrixEr resolved_vertices;
     MatrixIr resolved_faces;
 
+    // See https://github.com/gcherchi/FastAndRobustMeshArrangements/issues/11
+    // for explanation of the magic number 5 and the multipler `s`.
     resolved_vertices.resize(gen_points.size() - 5, 3);
     const ExactScalar s = gen_points.back()->toExplicit3D().X();
     for (size_t i = 0; i < gen_points.size() - 5; i++) {
@@ -184,7 +186,9 @@ void FastArrangement::run()
     // std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
     // std::endl;
 
-    // Clean up
     // computeApproximateCoordinates(gen_points, out_coords);
+
+    // Clean up
+    // Note: free points are no longer necessary as the memory is owned by the `arena` object.
     // freePointsMemory(gen_points);
 }
