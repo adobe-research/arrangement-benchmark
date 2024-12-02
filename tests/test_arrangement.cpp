@@ -32,7 +32,8 @@ TEST_CASE("FastArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_fast_arrangement(V, F, L);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 1);
+        // +1 because arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 1 + 1);
         REQUIRE(engine->get_num_patches() == 1);
 
         auto& vertices = engine->get_vertices();
@@ -53,7 +54,8 @@ TEST_CASE("FastArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_fast_arrangement(V3, F3, L3);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 2);
+        // +1 because arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 2 + 1);
         REQUIRE(engine->get_num_patches() == 2);
 
         auto& vertices = engine->get_vertices();
@@ -86,7 +88,8 @@ TEST_CASE("FastArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_fast_arrangement(V3, F3, L3);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 1);
+        // +1 because arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 1 + 1);
         REQUIRE(engine->get_num_patches() == 1);
 
         auto& vertices = engine->get_vertices();
@@ -117,7 +120,8 @@ TEST_CASE("FastArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_fast_arrangement(V3, F3, L3);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 2);
+        // +1 because arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 2 + 1);
         REQUIRE(engine->get_num_patches() == 4);
 
         auto& vertices = engine->get_vertices();
@@ -137,7 +141,8 @@ TEST_CASE("MeshArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_mesh_arrangement(V, F, L);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 1);
+        // +1 because mesh arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 1 + 1);
         REQUIRE(engine->get_num_patches() == 1);
 
         auto& vertices = engine->get_vertices();
@@ -158,7 +163,8 @@ TEST_CASE("MeshArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_mesh_arrangement(V3, F3, L3);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 2);
+        // +1 because mesh arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 2 + 1);
         REQUIRE(engine->get_num_patches() == 2);
 
         auto& vertices = engine->get_vertices();
@@ -190,7 +196,8 @@ TEST_CASE("MeshArrangement", "[arrangement]")
         engine->run();
 
         // Mesh arrangement keeps degenerate cells.
-        REQUIRE(engine->get_num_cells() == 2);
+        // +1 because mesh arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 2 + 1);
         REQUIRE(engine->get_num_patches() == 3);
 
         auto& vertices = engine->get_vertices();
@@ -221,7 +228,8 @@ TEST_CASE("MeshArrangement", "[arrangement]")
         auto engine = arrangement::Arrangement::create_mesh_arrangement(V3, F3, L3);
         engine->run();
 
-        REQUIRE(engine->get_num_cells() == 2);
+        // +1 because mesh arrangments keeps the ambient cell.
+        REQUIRE(engine->get_num_cells() == 2 + 1);
         REQUIRE(engine->get_num_patches() == 4);
 
         auto& vertices = engine->get_vertices();
