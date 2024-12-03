@@ -1,0 +1,26 @@
+[build-system]
+requires = [
+    "scikit-build-core==0.9.8",
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "arrangement"
+maintainers = [{name = "Qingnan Zhou", email = "qnzhou@gmail.com"}]
+description = "A benchmark library for computing mesh arrangement."
+readme = "README.md"
+requires-python = ">=3.9"
+dynamic = ["version"]
+
+[tool.scikit-build]
+install.components = ["Arrangement_Python_Runtime"]
+wheel.packages = ["python/arrangement"]
+cmake.build-type = "Release"
+build-dir = "_skbuild"
+
+[tool.scikit-build.cmake.define]
+ARRANGEMENT_BUILD_PYTHON_BINDING = true
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "python/arrangement/__init__.py"

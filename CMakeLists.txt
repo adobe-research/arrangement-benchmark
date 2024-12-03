@@ -3,6 +3,14 @@ project(arrangement)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+if(SKBUILD)
+    if(APPLE)
+        set(CMAKE_INSTALL_RPATH @loader_path)
+    elseif(UNIX)
+        set(CMAKE_INSTALL_RPATH $ORIGIN)
+    endif()
+endif()
+
 include(FetchContent)
 include(Eigen3)
 include(fast_arrangement)
@@ -52,4 +60,17 @@ if (ARRANGEMENT_EXAMPLES)
     file(GLOB EXAMPLE_FILES "${PROJECT_SOURCE_DIR}/app/compute_arrangement.cpp")
     add_executable(compute_arrangement ${EXAMPLE_FILES})
     target_link_libraries(compute_arrangement PRIVATE arrangement::arrangement CLI11::CLI11)
+endif()
+
+option(ARRANGEMENT_BUILD_PYTHON_BINDING "Build Python bindings" OFF)
+if (ARRANGEMENT_BUILD_PYTHON_BINDING)
+    include(nanobind)
+    set(PY_SRC_FILE "${PROJECT_SOURCE_DIR}/python/pyarrangement.cpp")
+    nanobind_add_module(pyarrangement NB_STATIC ${PY_SRC_FILE})
+    target_link_libraries(pyarrangement PRIVATE arrangement::arrangement)
+    install(TARGETS pyarrangement LIBRARY DESTINATION .)
+    install(TARGETS pyarrangement tbb LIBRARY
+        COMPONENT Arrangement_Python_Runtime
+        DESTINATION ${SKBUILD_PLATLIB_DIR}/arrangement)
+    add_library(arrangement::pyarrangement ALIAS pyarrangement)
 endif()
