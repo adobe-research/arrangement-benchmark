@@ -7,14 +7,14 @@ namespace arrangement {
 class ArrangementException : public std::exception
 {
 public:
-    ArrangementException(const std::string &description)
+    ArrangementException(const std::string& description)
         : exception()
         , m_description(description)
     {}
     virtual ~ArrangementException() throw() {}
 
 public:
-    virtual const char *what() const throw() { return m_description.c_str(); }
+    virtual const char* what() const throw() { return m_description.c_str(); }
 
 private:
     std::string m_description;
@@ -23,7 +23,7 @@ private:
 class IOError : public ArrangementException
 {
 public:
-    IOError(const std::string &description)
+    IOError(const std::string& description)
         : ArrangementException(description)
     {}
     virtual ~IOError() throw() {}
@@ -32,7 +32,7 @@ public:
 class RuntimeError : public ArrangementException
 {
 public:
-    RuntimeError(const std::string &description)
+    RuntimeError(const std::string& description)
         : ArrangementException(description)
     {}
     virtual ~RuntimeError() throw() {}
@@ -41,7 +41,7 @@ public:
 class NotImplementedError : public ArrangementException
 {
 public:
-    NotImplementedError(const std::string &description)
+    NotImplementedError(const std::string& description)
         : ArrangementException(description)
     {}
     virtual ~NotImplementedError() throw() {}

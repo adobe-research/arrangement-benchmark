@@ -10,7 +10,7 @@ public:
     using Base = Arrangement;
 
 public:
-    FastArrangement(const MatrixFr &vertices, const MatrixIr &faces, const VectorI &face_labels)
+    FastArrangement(const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels)
         : Base(vertices, faces, face_labels)
     {}
     ~FastArrangement() = default;

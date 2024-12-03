@@ -127,7 +127,7 @@ ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 
 # If true, analyze the formatted file for the most common alignment of & and *. Point
-#DerivePointerAlignment: false
+DerivePointerAlignment: false
 
 # Disables formatting at all.
 #DisableFormat: false
@@ -206,7 +206,7 @@ NamespaceIndentation: None
 #PenaltyReturnTypeOnItsOwnLine (unsigned)
 
 # If true, analyze the formatted file for the most common alignment of & and *. PointerAlignment is then used only as fallback.
-PointerAlignment: Middle
+PointerAlignment: Left
 
 # If true, clang-format will attempt to re-flow comments.
 ReflowComments: true
