@@ -15,7 +15,8 @@ mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DARRANGEMENT_UNIT_TESTS=ON \
-         -DARRANGEMENT_BENCHMARKS=ON
+         -DARRANGEMENT_BENCHMARKS=ON \
+         -DARRANGEMENT_EXAMPLES=ON
 make -j
 ```
 
