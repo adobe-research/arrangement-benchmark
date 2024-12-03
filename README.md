@@ -1,4 +1,4 @@
-## Arrangement Benechmark
+## Arrangement Benchmark
 
 This repo interfaces with the following arrangement algorithms:
 
@@ -9,6 +9,8 @@ This repo interfaces with the following arrangement algorithms:
 [^2]: Cherchi, Gianmarco, et al. "[Fast and robust mesh arrangements using floating-point arithmetic](https://dl.acm.org/doi/abs/10.1145/3414685.3417818)." ACM Transactions on Graphics (TOG) 39.6 (2020): 1-16.
 
 ## Build
+
+To build the C++ library:
 
 ```sh
 mkdir build
@@ -87,6 +89,43 @@ for (size_t i=0; i<engine->get_num_cells(); i++) {
     igl::write_triangle_mesh("cell_" + std::to_string(i) + ".obj", out_vertices, cell_facets);
 }
 ```
+
+## Python package
+
+Alternatively, one can install this library as a Python package:
+
+```sh
+# From the arrangement root directory
+pip install .
+```
+
+To use the library:
+
+```python
+import arrangement
+
+# Initialize input
+V = ... # nx3 Vertex numpy matrix
+F = ... # mx3 Face numpy matrix
+L = ... # mx1 Face numpy labels
+
+# Create a mesh arrangement engine
+engine = arrangement.Arrangement.create_mesh_arrangement(V, F, L)
+engine.run()
+
+# Extract the output
+out_vertices = engine.vertices
+out_faces = engine.faces
+out_labels = engine.face_labels
+```
+
+You can also invoke a command line script to run the arrangement:
+
+```sh
+python -m arrangement --engine mesh -o output.msh input_mesh_1.obj input_mesh_2.ply ...
+```
+
+It will compute the arrangement of all input meshes and write the output to `output.msh`.
 
 ### License
 
