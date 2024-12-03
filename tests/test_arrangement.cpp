@@ -9,8 +9,7 @@
 
 #include <tuple>
 
-auto concatenate_mesh(
-    const arrangement::MatrixFr& V1,
+auto concatenate_mesh(const arrangement::MatrixFr& V1,
     const arrangement::MatrixIr& F1,
     const arrangement::VectorI& L1,
     const arrangement::MatrixFr& V2,
@@ -237,5 +236,9 @@ TEST_CASE("MeshArrangement", "[arrangement]")
 
         REQUIRE(vertices.rows() == 9);
         REQUIRE(faces.rows() == 13);
+
+        auto& labels = engine->get_out_face_labels();
+        REQUIRE(labels.minCoeff() == 0);
+        REQUIRE(labels.maxCoeff() == 4);
     }
 }
