@@ -55,9 +55,9 @@ MeshArrangement                                100             1     1.69776 m
 ```c++
 #include <arrangement/Arrangement.h>
 
-arrangement::MatrixFr V; // nx3 Vertex matrix
-arrangement::MatrixIr F; // mx3 Face matrix
-arrangement::VectorI L;  // mx1 Face labels
+arrangement::MatrixFr V = ...; // nx3 Vertex matrix
+arrangement::MatrixIr F = ...; // mx3 Face matrix
+arrangement::VectorI  L = ...; // mx1 Face labels
 
 // Create a mesh arrangement engine.
 auto engine = arrangement::Arrangement::create_mesh_arrangement(V, F, L);
@@ -72,6 +72,8 @@ To extract the mesh with all intersections resolved:
 ```c++
 auto out_vertices = engine->get_vertices();
 auto out_faces = engine->get_faces();
+
+// Out label for each face is inherited from the parent input face.
 auto out_labels = engine->get_labels();
 
 // Optional: write the mesh to a file
