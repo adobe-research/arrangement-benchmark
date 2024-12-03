@@ -11,6 +11,9 @@ description = "A benchmark library for computing mesh arrangement."
 readme = "README.md"
 requires-python = ">=3.9"
 dynamic = ["version"]
+dependencies = [
+    "lagrange-open>=6.28.0",
+]
 
 [tool.scikit-build]
 install.components = ["Arrangement_Python_Runtime"]
