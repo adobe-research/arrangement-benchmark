@@ -11,6 +11,7 @@ import arrangement
 import lagrange
 import numpy as np
 from pathlib import Path
+import json
 
 
 def parse_args():
@@ -64,6 +65,33 @@ def main():
     lagrange.io.save_mesh(args.output, output_mesh)
 
     if args.export_cells:
+        cells = engine.cells
+        patches = engine.patches
+        parent_facets = engine.face_labels
+        cell_info = []
+
+        # Dump cell information to JSON.
+        for i in range(engine.num_cells):
+            cell_ids = cells[patches]
+            active_facets = (cell_ids == i).any(axis=1)
+            active_orientations = np.zeros(output_mesh.num_facets, dtype=int)
+            active_orientations[cell_ids[:, 0] == i] = -1
+            active_orientations[cell_ids[:, 1] == i] = 1
+
+            active_parent_facets = parent_facets[active_facets]
+            active_orientations = active_orientations[active_facets]
+            active_facets = np.where(active_facets)[0]
+            cell_info.append(
+                {
+                    "facet_ids": active_facets.tolist(),
+                    "facet_orientations": active_orientations.tolist(),
+                    "parent_facet_ids": active_parent_facets.tolist(),
+                }
+            )
+
+        with open(f"{Path(args.output).stem}_cells.json", "w") as f:
+            json.dump(cell_info, f, indent=4)
+
         for i in range(engine.num_cells):
             cell_facets = engine.get_cell_faces(i)
 
@@ -71,7 +99,9 @@ def main():
             cell.add_vertices(engine.vertices)
             cell.add_triangles(cell_facets)
 
-            cell_filename = f"{Path(args.output).stem}_cell_{i}{Path(args.output).suffix}"
+            cell_filename = (
+                f"{Path(args.output).stem}_cell_{i}{Path(args.output).suffix}"
+            )
             lagrange.io.save_mesh(cell_filename, cell)
 
 
