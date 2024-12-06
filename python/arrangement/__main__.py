@@ -65,14 +65,14 @@ def main():
     lagrange.io.save_mesh(args.output, output_mesh)
 
     if args.export_cells:
-        cells = engine.cells
+        cell_data = engine.cells
         patches = engine.patches
         parent_facets = engine.face_labels
         cell_info = []
 
         # Dump cell information to JSON.
         for i in range(engine.num_cells):
-            cell_ids = cells[patches]
+            cell_ids = cell_data[patches]
             active_facets = (cell_ids == i).any(axis=1)
             active_orientations = np.zeros(output_mesh.num_facets, dtype=int)
             active_orientations[cell_ids[:, 0] == i] = -1
@@ -92,17 +92,19 @@ def main():
         with open(f"{Path(args.output).stem}_cells.json", "w") as f:
             json.dump(cell_info, f, indent=4)
 
+        cells = []
         for i in range(engine.num_cells):
             cell_facets = engine.get_cell_faces(i)
 
             cell = lagrange.SurfaceMesh()
             cell.add_vertices(engine.vertices)
             cell.add_triangles(cell_facets)
+            cell.create_attribute("cell_id", initial_values=np.ones(cell.num_facets) * i)
 
-            cell_filename = (
-                f"{Path(args.output).stem}_cell_{i}{Path(args.output).suffix}"
-            )
-            lagrange.io.save_mesh(cell_filename, cell)
+            cells.append(cell)
+
+        cells = lagrange.combine_meshes(cells)
+        lagrange.io.save_mesh(f"{Path(args.output).stem}_cells.msh", cells)
 
 
 if __name__ == "__main__":
