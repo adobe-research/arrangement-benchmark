@@ -16,5 +16,7 @@ else()
     set(Python_FIND_VIRTUALENV FIRST)
 endif()
 
-find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
+find_package(Python
+    COMPONENTS Interpreter Development.Module REQUIRED
+    OPTIONAL_COMPONENTS Development.SABIModule)
 

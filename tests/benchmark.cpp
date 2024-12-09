@@ -9,6 +9,7 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 
 #include <tuple>
+#include <numbers>
 
 TEST_CASE("benchmark", "[arrangement][!benchmark]")
 {
@@ -23,7 +24,7 @@ TEST_CASE("benchmark", "[arrangement][!benchmark]")
     arrangement::VectorI L(4 * N);
 
     for (size_t i = 0; i < N; i++) {
-        Eigen::AngleAxisd rot(i * 2 * M_PI / N, axis);
+        Eigen::AngleAxisd rot(i * 2 * std::numbers::pi / N, axis);
         V.block(4 * i, 0, 4, 3) = (rot.toRotationMatrix() * tet_V.transpose()).transpose();
         F.block(4 * i, 0, 4, 3) = tet_F.array() + 4 * i;
         L.segment(4 * i, 4) = tet_L;

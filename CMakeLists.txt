@@ -26,7 +26,8 @@ file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 file(GLOB INC_FILES "${PROJECT_SOURCE_DIR}/include/arrangement/*.h")
 
 add_library(arrangement STATIC ${SRC_FILES} ${INC_FILES})
-target_include_directories(arrangement PUBLIC 
+target_compile_features(arrangement PRIVATE cxx_std_20)
+target_include_directories(arrangement PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 target_link_libraries(arrangement PUBLIC igl::core igl_copyleft::cgal
@@ -52,6 +53,7 @@ if(ARRANGEMENT_UNIT_TESTS)
     add_executable(arrangement_tests ${TEST_FILES})
     target_link_libraries(arrangement_tests PRIVATE arrangement::arrangement Catch2::Catch2WithMain)
     target_compile_definitions(arrangement_tests PRIVATE CATCH_CONFIG_ENABLE_BENCHMARKING)
+    target_compile_features(arrangement_tests PRIVATE cxx_std_20)
 endif()
 
 option(ARRANGEMENT_EXAMPLES "Build examples" OFF)
@@ -66,11 +68,12 @@ option(ARRANGEMENT_BUILD_PYTHON_BINDING "Build Python bindings" OFF)
 if (ARRANGEMENT_BUILD_PYTHON_BINDING)
     include(nanobind)
     set(PY_SRC_FILE "${PROJECT_SOURCE_DIR}/python/pyarrangement.cpp")
-    nanobind_add_module(pyarrangement NB_STATIC ${PY_SRC_FILE})
+    nanobind_add_module(pyarrangement NB_STATIC STABLE_ABI ${PY_SRC_FILE})
     target_link_libraries(pyarrangement PRIVATE arrangement::arrangement)
     install(TARGETS pyarrangement LIBRARY DESTINATION .)
-    install(TARGETS pyarrangement tbb LIBRARY
+    install(TARGETS pyarrangement tbb
         COMPONENT Arrangement_Python_Runtime
-        DESTINATION ${SKBUILD_PLATLIB_DIR}/arrangement)
+        RUNTIME DESTINATION ${SKBUILD_PLATLIB_DIR}/arrangement
+        LIBRARY DESTINATION ${SKBUILD_PLATLIB_DIR}/arrangement)
     add_library(arrangement::pyarrangement ALIAS pyarrangement)
 endif()

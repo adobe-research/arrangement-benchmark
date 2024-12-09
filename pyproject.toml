@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "scikit-build-core==0.9.8",
+    "scikit-build-core~=0.10",
 ]
 build-backend = "scikit_build_core.build"
 
@@ -18,6 +18,7 @@ dependencies = [
 [tool.scikit-build]
 install.components = ["Arrangement_Python_Runtime"]
 wheel.packages = ["python/arrangement"]
+wheel.py-api = "cp312"
 cmake.build-type = "Release"
 build-dir = "_skbuild"
 

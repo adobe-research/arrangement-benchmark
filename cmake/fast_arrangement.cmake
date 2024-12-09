@@ -21,6 +21,11 @@ set(TBB_TEST OFF CACHE BOOL " " FORCE)
 set(TBB_EXAMPLES OFF CACHE BOOL " " FORCE)
 add_subdirectory(${fast_arrangement_SOURCE_DIR}/external/oneTBB)
 
+set_target_properties(tbb PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug
+)
+
 add_library(fast_arrangement
     ${cinolib_SOURCE_DIR}/external/shewchuk_predicates/shewchuk.c
 )

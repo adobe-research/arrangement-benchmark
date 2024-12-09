@@ -7,7 +7,7 @@ include(cmake/python.cmake)
 CPMAddPackage(
     NAME nanobind
     GITHUB_REPOSITORY wjakob/nanobind
-    GIT_TAG v2.2.0
+    GIT_TAG v2.4.0
     DOWNLOAD_ONLY YES
 )
 
