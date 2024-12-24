@@ -12,7 +12,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DARRANGEMENT_UNIT_TESTS=ON
         cmake --build . --config Release -j
         # cmake --build . --config Release --target test
 
@@ -25,9 +25,9 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DARRANGEMENT_UNIT_TESTS=ON
         cmake --build . --config Release -j
-        # ctest -V
+        ctest -V
         # cmake --build . --config Release --target test
 
   build-Windows:
@@ -39,6 +39,6 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -DCMAKE_GENERATOR_PLATFORM=x64
+        cmake .. -DCMAKE_GENERATOR_PLATFORM=x64 -DARRANGEMENT_UNIT_TESTS=ON
         cmake --build . --config Release -j
         # cmake --build . --config Release --target run_unit_tests
