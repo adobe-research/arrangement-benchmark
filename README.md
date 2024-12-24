@@ -43,13 +43,17 @@ benchmark name                       samples       iterations    estimated
                                      mean          low mean      high mean
                                      std dev       low std dev   high std dev
 -------------------------------------------------------------------------------
-FastArrangement                                100             1     52.6855 s
-                                        548.791 ms    545.996 ms     551.25 ms
-                                        13.3445 ms    11.5365 ms    17.1973 ms
+FastArrangement                                100             1     53.7318 s
+                                        544.909 ms    543.163 ms    546.648 ms
+                                        8.89944 ms    7.82959 ms    10.3866 ms
 
-MeshArrangement                                100             1     1.69776 m
-                                         1.01601 s     1.01498 s      1.0172 s
-                                        5.65358 ms    4.72342 ms    7.14259 ms
+MeshArrangement                                100             1     1.69022 m
+                                         1.01577 s     1.01464 s     1.01707 s
+                                        6.19107 ms    5.21611 ms    7.44767 ms
+
+Geogram                                        100             1     1.88286 m
+                                         1.05256 s     1.04689 s     1.05797 s
+                                        28.2375 ms    24.6452 ms    33.6001 ms
 ```
 
 ## Using the library
