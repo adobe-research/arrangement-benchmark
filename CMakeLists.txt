@@ -54,6 +54,8 @@ if(ARRANGEMENT_UNIT_TESTS)
     target_link_libraries(arrangement_tests PRIVATE arrangement::arrangement Catch2::Catch2WithMain)
     target_compile_definitions(arrangement_tests PRIVATE CATCH_CONFIG_ENABLE_BENCHMARKING)
     target_compile_features(arrangement_tests PRIVATE cxx_std_20)
+
+    catch_discover_tests(arrangement_tests)
 endif()
 
 option(ARRANGEMENT_EXAMPLES "Build examples" OFF)
