@@ -16,6 +16,7 @@
 #include <solve_intersections.h>
 
 #include <chrono>
+#include <iostream>
 
 using namespace arrangement;
 #ifdef __clang__
@@ -179,12 +180,12 @@ void FastArrangement::run()
         [](const ExactScalar& val) { return CGAL::to_double(val); });
     m_faces = resolved_faces;
 
-    // auto t_end = std::chrono::high_resolution_clock::now();
-    // std::chrono::duration<double> resolve_time = t_mid - t_begin;
-    // std::chrono::duration<double> extract_time = t_end - t_mid;
-    // std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() <<
-    // std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
-    // std::endl;
+    auto t_end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> resolve_time = t_mid - t_begin;
+    std::chrono::duration<double> extract_time = t_end - t_mid;
+    std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() <<
+    std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
+    std::endl;
 
     // computeApproximateCoordinates(gen_points, out_coords);
 

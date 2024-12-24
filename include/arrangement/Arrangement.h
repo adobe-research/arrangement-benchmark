@@ -13,6 +13,8 @@ public:
         const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels);
     static Ptr create_fast_arrangement(
         const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels);
+    static Ptr create_geogram_arrangement(
+        const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels);
 
 public:
     Arrangement(const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels)

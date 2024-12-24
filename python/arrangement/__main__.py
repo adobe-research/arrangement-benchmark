@@ -24,7 +24,7 @@ def parse_args():
         "--engine",
         help="Arrangement engine",
         default="mesh",
-        choices=["mesh", "fast"],
+        choices=["mesh", "fast", "geogram"],
     )
     parser.add_argument(
         "-x", "--export-cells", action="store_true", help="Export cells"
@@ -48,6 +48,10 @@ def main():
         )
     elif args.engine == "fast":
         engine = arrangement.Arrangement.create_fast_arrangement(
+            mesh.vertices, mesh.facets, np.arange(mesh.num_facets)
+        )
+    elif args.engine == "geogram":
+        engine = arrangement.Arrangement.create_geogram_arrangement(
             mesh.vertices, mesh.facets, np.arange(mesh.num_facets)
         )
     else:
@@ -88,7 +92,8 @@ def main():
             }
         )
 
-    with open(f"{Path(args.output).stem}_cells.json", "w") as f:
+    output_dir = Path(args.output).parent
+    with open(output_dir / f"{Path(args.output).stem}_cells.json", "w") as f:
         json.dump(cell_info, f, indent=4)
 
     cells = []
@@ -103,11 +108,11 @@ def main():
         cells.append(cell)
 
         if args.export_cells:
-            cell_file = f"{Path(args.output).stem}_cell_{i}.msh"
+            cell_file = output_dir / f"{Path(args.output).stem}_cell_{i}.msh"
             lagrange.io.save_mesh(cell_file, cell)
 
     cells = lagrange.combine_meshes(cells)
-    lagrange.io.save_mesh(f"{Path(args.output).stem}_cells.msh", cells)
+    lagrange.io.save_mesh(output_dir / f"{Path(args.output).stem}_cells.msh", cells)
 
 
 if __name__ == "__main__":

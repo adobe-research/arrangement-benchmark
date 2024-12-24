@@ -11,10 +11,10 @@ if(SKBUILD)
     endif()
 endif()
 
-include(FetchContent)
 include(Eigen3)
 include(fast_arrangement)
 include(libigl)
+include(geogram)
 
 option(ARRANGEMENT_WITH_SANITIZERS "Enable sanitizers" OFF)
 if (ARRANGEMENT_WITH_SANITIZERS)
@@ -31,7 +31,7 @@ target_include_directories(arrangement PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 target_link_libraries(arrangement PUBLIC igl::core igl_copyleft::cgal
-    fast_arrangement::fast_arrangement)
+    fast_arrangement::fast_arrangement geogram::geogram)
 
 add_library(arrangement::arrangement ALIAS arrangement)
 
@@ -71,7 +71,7 @@ if (ARRANGEMENT_BUILD_PYTHON_BINDING)
     nanobind_add_module(pyarrangement NB_STATIC STABLE_ABI ${PY_SRC_FILE})
     target_link_libraries(pyarrangement PRIVATE arrangement::arrangement)
     install(TARGETS pyarrangement LIBRARY DESTINATION .)
-    install(TARGETS pyarrangement tbb
+    install(TARGETS pyarrangement tbb geogram
         COMPONENT Arrangement_Python_Runtime
         RUNTIME DESTINATION ${SKBUILD_PLATLIB_DIR}/arrangement
         LIBRARY DESTINATION ${SKBUILD_PLATLIB_DIR}/arrangement)

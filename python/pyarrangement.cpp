@@ -11,6 +11,8 @@ NB_MODULE(pyarrangement, m)
     nb::class_<arrangement::Arrangement>(m, "Arrangement")
         .def_static("create_mesh_arrangement", &arrangement::Arrangement::create_mesh_arrangement)
         .def_static("create_fast_arrangement", &arrangement::Arrangement::create_fast_arrangement)
+        .def_static(
+            "create_geogram_arrangement", &arrangement::Arrangement::create_geogram_arrangement)
         .def("run", &arrangement::Arrangement::run)
         .def_prop_ro(
             "vertices", &arrangement::Arrangement::get_vertices, nb::rv_policy::reference_internal)
