@@ -7,7 +7,7 @@ if(SKBUILD)
     if(APPLE)
         set(CMAKE_INSTALL_RPATH @loader_path)
     elseif(UNIX)
-        set(CMAKE_INSTALL_RPATH $ORIGIN)
+	set(CMAKE_INSTALL_RPATH $ORIGIN)
     endif()
 endif()
 
@@ -32,6 +32,7 @@ target_include_directories(arrangement PUBLIC
     $<INSTALL_INTERFACE:include>)
 target_link_libraries(arrangement PUBLIC igl::core igl_copyleft::cgal
     fast_arrangement::fast_arrangement geogram::geogram)
+set_target_properties(arrangement PROPERTIES POSITION_INDEPENDENT_CODE On)
 
 add_library(arrangement::arrangement ALIAS arrangement)
 
