@@ -52,6 +52,7 @@ void GeogramArrangement::run()
     engine.set_delaunay(true);
     engine.set_radial_sort(true);
     engine.intersect();
+    //engine.remove_external_shell();
     auto t_mid = std::chrono::high_resolution_clock::now();
 
     m_vertices.resize(mesh.vertices.nb(), 3);
