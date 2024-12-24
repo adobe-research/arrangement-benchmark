@@ -8,9 +8,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: apt-get
-      run: sudo apt-get install -y libxrandr-dev
-
     - name: build and run
       run: |
         mkdir build

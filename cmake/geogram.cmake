@@ -3,6 +3,7 @@ if (TARGET geogram::geogram)
 endif()
 
 set(GEOGRAM_LIB_ONLY "ON" CACHE BOOL " " FORCE)
+set(GEOGRAM_WITH_GRAPHICS "OFF" CACHE BOOL " " FORCE)
 
 include(CPM)
 CPMAddPackage(
