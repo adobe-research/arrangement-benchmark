@@ -30,6 +30,7 @@ def parse_args():
         "-x", "--export-cells", action="store_true", help="Export cells"
     )
     parser.add_argument("-o", "--output", help="Output file", required=True)
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     parser.add_argument("input_meshes", nargs="+", help="Input mesh files")
     return parser.parse_args()
 
@@ -56,6 +57,9 @@ def main():
         )
     else:
         raise ValueError(f"Unknown engine: {args.engine}")
+
+    if args.verbose:
+        engine.verbose = True
 
     engine.run()
 

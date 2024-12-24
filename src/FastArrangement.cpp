@@ -181,11 +181,13 @@ void FastArrangement::run()
     m_faces = resolved_faces;
 
     auto t_end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> resolve_time = t_mid - t_begin;
-    std::chrono::duration<double> extract_time = t_end - t_mid;
-    std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() <<
-    std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
-    std::endl;
+    if (m_verbose) {
+        std::chrono::duration<double> resolve_time = t_mid - t_begin;
+        std::chrono::duration<double> extract_time = t_end - t_mid;
+        std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() <<
+        std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
+        std::endl;
+    }
 
     // computeApproximateCoordinates(gen_points, out_coords);
 

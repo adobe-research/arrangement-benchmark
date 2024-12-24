@@ -27,5 +27,8 @@ NB_MODULE(pyarrangement, m)
         .def_prop_ro(
             "patches", &arrangement::Arrangement::get_patches, nb::rv_policy::reference_internal)
         .def_prop_ro(
-            "cells", &arrangement::Arrangement::get_cells, nb::rv_policy::reference_internal);
+            "cells", &arrangement::Arrangement::get_cells, nb::rv_policy::reference_internal)
+        .def_prop_rw("verbose",
+            &arrangement::Arrangement::get_verbose,
+            &arrangement::Arrangement::set_verbose);
 }

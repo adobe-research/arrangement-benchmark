@@ -76,22 +76,24 @@ void GeogramArrangement::run()
 
     m_patches.resize(chart.size());
     size_t num_patches = 0;
-    for (size_t i=0; i<chart.size(); i++) {
+    for (size_t i = 0; i < chart.size(); i++) {
         m_patches[i] = chart[i];
         num_patches = std::max(num_patches, (size_t)chart[i] + 1);
     }
 
     m_cells.resize(num_patches, 2);
     m_cells.setConstant(-1);
-    for (size_t i=0; i<num_patches; i++) {
+    for (size_t i = 0; i < num_patches; i++) {
         m_cells(i, 1) = i;
     }
     auto t_end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> resolve_time = t_mid - t_begin;
-    std::chrono::duration<double> extract_time = t_end - t_mid;
-    std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count() <<
-    std::endl; std::cout << "Arrangement: extracting arrangement: " << extract_time.count() <<
-    std::endl;
+    if (m_verbose) {
+        std::chrono::duration<double> resolve_time = t_mid - t_begin;
+        std::chrono::duration<double> extract_time = t_end - t_mid;
+        std::cout << "Arrangement: resolving self-intersection: " << resolve_time.count()
+                  << std::endl;
+        std::cout << "Arrangement: extracting arrangement: " << extract_time.count() << std::endl;
+    }
 }
 
 } // namespace arrangement

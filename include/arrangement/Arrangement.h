@@ -68,6 +68,9 @@ public:
 
     const MatrixIr& get_winding_number() const { return m_winding_number; }
 
+    void set_verbose(const bool verbose) { m_verbose = verbose; }
+    bool get_verbose() const { return m_verbose; }
+
 protected:
     MatrixFr m_vertices;
     MatrixIr m_faces;
@@ -76,6 +79,7 @@ protected:
     MatrixIr m_cells;
     VectorI m_patches;
     MatrixIr m_winding_number;
+    bool m_verbose = false;
 };
 
 } // namespace arrangement

@@ -49,4 +49,11 @@ TEST_CASE("benchmark", "[arrangement][!benchmark]")
         engine->run();
         return std::make_tuple(engine->get_vertices(), engine->get_faces());
     };
+
+    BENCHMARK("Geogram")
+    {
+        auto engine = arrangement::Arrangement::create_geogram_arrangement(V, F, L);
+        engine->run();
+        return std::make_tuple(engine->get_vertices(), engine->get_faces());
+    };
 }
