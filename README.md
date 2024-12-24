@@ -4,9 +4,11 @@ This repo interfaces with the following arrangement algorithms:
 
 * Mesh arrangement [^1]
 * Fast and robust mesh arrangement [^2]
+* Weiler model [^3]
 
 [^1]: Zhou, Qingnan, et al. "[Mesh arrangements for solid geometry](https://cims.nyu.edu/gcl/papers/zhou2016mas.pdf)." ACM Transactions on Graphics (TOG) 35.4 (2016): 1-15.
 [^2]: Cherchi, Gianmarco, et al. "[Fast and robust mesh arrangements using floating-point arithmetic](https://dl.acm.org/doi/abs/10.1145/3414685.3417818)." ACM Transactions on Graphics (TOG) 39.6 (2020): 1-16.
+[^3]: Lévy, Bruno. "[Exact predicates, exact constructions and combinatorics for mesh CSG.](https://arxiv.org/abs/2405.12949)" arXiv preprint arXiv:2405.12949 (2024).
 
 ## Build
 
