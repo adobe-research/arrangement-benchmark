@@ -10,5 +10,5 @@ include(CPM)
 CPMAddPackage(
     NAME libigl
     GITHUB_REPOSITORY libigl/libigl
-    GIT_TAG 5067c8b7eb85343af8f53cdeb0bfd1957ad59e04
+    GIT_TAG ba69acc509632c56c738f03440841cc37da50497
 )
