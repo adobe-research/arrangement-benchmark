@@ -19,7 +19,7 @@ CPMAddPackage(
 
 set(TBB_TEST OFF CACHE BOOL " " FORCE)
 set(TBB_EXAMPLES OFF CACHE BOOL " " FORCE)
-add_subdirectory(${fast_arrangement_SOURCE_DIR}/external/oneTBB)
+add_subdirectory(${fast_arrangement_SOURCE_DIR}/external/oneTBB ${CMAKE_CURRENT_BINARY_DIR}/fast_arrangement_tbb_build)
 
 set_target_properties(tbb PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release
