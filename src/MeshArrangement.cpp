@@ -88,10 +88,10 @@ void MeshArrangement::run()
 
     VectorI labels = VectorI::Zero(resolved_faces.rows());
     //// winding numbers
-    // igl::copyleft::cgal::propagate_winding_numbers(
-    //        resolved_vertices, resolved_faces,
-    //        uE, uE2E, num_patches, m_patches, num_cells, m_cells,
-    //        labels, m_winding_number);
+    igl::copyleft::cgal::propagate_winding_numbers(
+           resolved_vertices, resolved_faces,
+           uE, uEC, uEE, num_patches, m_patches, num_cells, m_cells,
+           labels, m_winding_number);
 
     // Cast resolved mesh back to Float
     m_vertices = MatrixFr(resolved_vertices.rows(), resolved_vertices.cols());

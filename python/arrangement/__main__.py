@@ -70,6 +70,13 @@ def main():
     output_mesh.create_attribute("src_facet_id", initial_values=engine.face_labels)
     output_mesh.create_attribute("patch_id", initial_values=engine.patches)
 
+    if (args.engine == "mesh"):
+        winding_number = engine.winding_number
+        winding_number_front = winding_number[:, 0]
+        winding_number_back = winding_number[:, 1]
+        output_mesh.create_attribute("winding_number_front", initial_values=winding_number_front)
+        output_mesh.create_attribute("winding_number_back", initial_values=winding_number_back)
+
     lagrange.io.save_mesh(args.output, output_mesh)
 
     cell_data = engine.cells

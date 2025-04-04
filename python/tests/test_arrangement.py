@@ -51,6 +51,10 @@ class TestArrangement:
             cell.add_triangles(faces)
             cells.append(cell)
 
+        if engine_name == "mesh":
+            winding_number = engine.winding_number
+            assert len(winding_number) == len(output_mesh.facets)
+
         return output_mesh, cells
 
     def test_mesh_arrangement(self, tet):
