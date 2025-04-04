@@ -54,6 +54,8 @@ class TestArrangement:
         if engine_name == "mesh":
             winding_number = engine.winding_number
             assert len(winding_number) == len(output_mesh.facets)
+            assert winding_number.shape[1] == 2
+            assert np.all(np.absolute(winding_number[:, 0] - winding_number[:, 1]) == 1)
 
         return output_mesh, cells
 

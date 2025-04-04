@@ -70,12 +70,20 @@ def main():
     output_mesh.create_attribute("src_facet_id", initial_values=engine.face_labels)
     output_mesh.create_attribute("patch_id", initial_values=engine.patches)
 
-    if (args.engine == "mesh"):
+    if args.engine == "mesh":
         winding_number = engine.winding_number
+        assert (
+            winding_number.shape[0] == output_mesh.num_facets
+        ), "Winding number should have the same number of facets as the output mesh"
+        assert winding_number.shape[1] == 2, "Winding number should have two components"
         winding_number_front = winding_number[:, 0]
         winding_number_back = winding_number[:, 1]
-        output_mesh.create_attribute("winding_number_front", initial_values=winding_number_front)
-        output_mesh.create_attribute("winding_number_back", initial_values=winding_number_back)
+        output_mesh.create_attribute(
+            "winding_number_front", initial_values=winding_number_front
+        )
+        output_mesh.create_attribute(
+            "winding_number_back", initial_values=winding_number_back
+        )
 
     lagrange.io.save_mesh(args.output, output_mesh)
 
