@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef ARRANGEMENT_FAST
+
 #include "Arrangement.h"
 
 namespace arrangement {
@@ -32,3 +34,5 @@ private:
 };
 
 } // namespace arrangement
+
+#endif // ARRANGEMENT_FAST

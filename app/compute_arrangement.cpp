@@ -42,6 +42,9 @@ int main(int argc, char** argv)
     } else {
         throw std::runtime_error("Unknown engine: " + args.engine);
     }
+    if (engine == nullptr) {
+        throw std::runtime_error("Failed to create arrangement engine");
+    }
 
     engine->run();
 

@@ -29,31 +29,37 @@ TEST_CASE("benchmark", "[arrangement][!benchmark]")
         F.block(4 * i, 0, 4, 3) = tet_F.array() + 4 * i;
         L.segment(4 * i, 4) = tet_L;
     }
-    igl::write_triangle_mesh("test.obj", V, F);
-    {
-        auto engine = arrangement::Arrangement::create_fast_arrangement(V, F, L);
-        engine->run();
-        igl::write_triangle_mesh("test.obj", engine->get_vertices(), engine->get_faces());
-    }
+    //igl::write_triangle_mesh("test.obj", V, F);
+    //{
+    //    auto engine = arrangement::Arrangement::create_fast_arrangement(V, F, L);
+    //    engine->run();
+    //    igl::write_triangle_mesh("test.obj", engine->get_vertices(), engine->get_faces());
+    //}
 
+#ifdef ARRANGEMENT_FAST
     BENCHMARK("FastArrangement")
     {
         auto engine = arrangement::Arrangement::create_fast_arrangement(V, F, L);
         engine->run();
         return std::make_tuple(engine->get_vertices(), engine->get_faces());
     };
+#endif
 
+#ifdef ARRANGEMENT_IGL
     BENCHMARK("MeshArrangement")
     {
         auto engine = arrangement::Arrangement::create_mesh_arrangement(V, F, L);
         engine->run();
         return std::make_tuple(engine->get_vertices(), engine->get_faces());
     };
+#endif
 
+#ifdef ARRANGEMENT_GEOGRAM
     BENCHMARK("Geogram")
     {
         auto engine = arrangement::Arrangement::create_geogram_arrangement(V, F, L);
         engine->run();
         return std::make_tuple(engine->get_vertices(), engine->get_faces());
     };
+#endif
 }

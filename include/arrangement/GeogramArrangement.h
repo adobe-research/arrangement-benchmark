@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef ARRANGEMENT_GEOGRAM
+
 #include "Arrangement.h"
 
 namespace arrangement {
@@ -28,3 +30,5 @@ private:
 };
 
 } // namespace arrangement
+
+#endif // ARRANGEMENT_GEOGRAM

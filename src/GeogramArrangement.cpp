@@ -1,3 +1,5 @@
+#ifdef ARRANGEMENT_GEOGRAM
+
 #include <arrangement/GeogramArrangement.h>
 
 #include <Eigen/Core>
@@ -52,7 +54,7 @@ void GeogramArrangement::run()
     engine.set_delaunay(true);
     engine.set_radial_sort(true);
     engine.intersect();
-    //engine.remove_external_shell();
+    // engine.remove_external_shell();
     auto t_mid = std::chrono::high_resolution_clock::now();
 
     m_vertices.resize(mesh.vertices.nb(), 3);
@@ -98,3 +100,5 @@ void GeogramArrangement::run()
 }
 
 } // namespace arrangement
+
+#endif // ARRANGEMENT_GEOGRAM

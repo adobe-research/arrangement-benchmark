@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef ARRANGEMENT_IGL
+
 #include "Arrangement.h"
 
 namespace arrangement {
@@ -27,3 +29,5 @@ private:
 };
 
 } // namespace arrangement
+
+#endif // ARRANGEMENT_IGL

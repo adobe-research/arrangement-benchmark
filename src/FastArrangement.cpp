@@ -1,3 +1,5 @@
+#ifdef ARRANGEMENT_FAST
+
 #include <arrangement/FastArrangement.h>
 #include <arrangement/MatrixUtils.h>
 
@@ -195,3 +197,5 @@ void FastArrangement::run()
     // Note: free points are no longer necessary as the memory is owned by the `arena` object.
     // freePointsMemory(gen_points);
 }
+
+#endif // ARRANGEMENT_FAST

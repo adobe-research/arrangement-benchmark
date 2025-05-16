@@ -12,9 +12,6 @@ if(SKBUILD)
 endif()
 
 include(Eigen3)
-include(fast_arrangement)
-include(libigl)
-include(geogram)
 
 option(ARRANGEMENT_WITH_SANITIZERS "Enable sanitizers" OFF)
 if (ARRANGEMENT_WITH_SANITIZERS)
@@ -22,19 +19,40 @@ if (ARRANGEMENT_WITH_SANITIZERS)
     add_sanitizer_support(address)
 endif()
 
+option(ARRANGEMENT_IGL "Enable mesh arrangement (libigl) support" ON)
+option(ARRANGEMENT_FAST "Enable fast arrangement (fast_arrangement) support" OFF)
+option(ARRANGEMENT_GEOGRAM "Enable geogram support" OFF)
+
 file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 file(GLOB INC_FILES "${PROJECT_SOURCE_DIR}/include/arrangement/*.h")
 
 add_library(arrangement STATIC ${SRC_FILES} ${INC_FILES})
+target_link_libraries(arrangement PUBLIC Eigen3::Eigen)
 target_compile_features(arrangement PRIVATE cxx_std_20)
 target_include_directories(arrangement PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
-target_link_libraries(arrangement PUBLIC igl::core igl_copyleft::cgal
-    fast_arrangement::fast_arrangement geogram::geogram)
 set_target_properties(arrangement PROPERTIES POSITION_INDEPENDENT_CODE On)
 
 add_library(arrangement::arrangement ALIAS arrangement)
+
+if (ARRANGEMENT_IGL)
+    include(libigl)
+    target_link_libraries(arrangement PUBLIC igl::core igl_copyleft::cgal)
+    target_compile_definitions(arrangement PUBLIC ARRANGEMENT_IGL)
+endif()
+
+if (ARRANGEMENT_FAST)
+    include(fast_arrangement)
+    target_link_libraries(arrangement PUBLIC fast_arrangement::fast_arrangement)
+    target_compile_definitions(arrangement PUBLIC ARRANGEMENT_FAST)
+endif()
+
+if (ARRANGEMENT_GEOGRAM)
+    include(geogram)
+    target_link_libraries(arrangement PUBLIC geogram::geogram)
+    target_compile_definitions(arrangement PUBLIC ARRANGEMENT_GEOGRAM)
+endif()
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
     target_compile_options(arrangement PRIVATE

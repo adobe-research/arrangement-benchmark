@@ -1,3 +1,5 @@
+#ifdef ARRANGEMENT_IGL
+
 /* This file is part of Arrangement. Copyright (c) 2016 by Qingnan Zhou */
 #include <arrangement/MatrixUtils.h>
 #include <arrangement/MeshArrangement.h>
@@ -110,3 +112,5 @@ void MeshArrangement::run()
         std::endl;
     }
 }
+
+#endif
