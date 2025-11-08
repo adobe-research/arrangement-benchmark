@@ -17,6 +17,13 @@ public:
         const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels);
 
 public:
+    /**
+     * @brief Constructor
+     *
+     * @param vertices MatrixFr of size #vertices by 3.
+     * @param faces MatrixIr of size #faces by 3.
+     * @param face_labels VectorI of size #faces.
+     */
     Arrangement(const MatrixFr& vertices, const MatrixIr& faces, const VectorI& face_labels)
         : m_vertices(vertices)
         , m_faces(faces)
@@ -24,12 +31,44 @@ public:
     {}
     virtual ~Arrangement() = default;
 
+    /**
+     * @brief Run the arrangement computation.
+     */
     virtual void run() = 0;
 
+    /**
+     * @brief Get vertices
+     *
+     * @note It will return the output vertices after arrangement is run.
+     *
+     * @return MatrixFr of size #vertices by 3.
+     */
     const MatrixFr& get_vertices() const { return m_vertices; }
+
+    /**
+     * @brief Get faces
+     *
+     * @note It will return the output faces after arrangement is run.
+     *
+     * @return MatrixIr of size #faces by 3.
+     */
     const MatrixIr& get_faces() const { return m_faces; }
+
+    /**
+     * @brief Get face labels
+     *
+     * Each output face corresponds to an input face. This vector gives the label
+     * of the input face for each output face.
+     *
+     * @return VectorI of size #faces.
+     */
     const VectorI& get_out_face_labels() const { return m_out_face_labels; }
 
+    /**
+     * @brief Get the number of cells.
+     *
+     * @return size_t Number of cells.
+     */
     size_t get_num_cells() const
     {
         if (m_cells.rows() > 0)
@@ -37,6 +76,14 @@ public:
         else
             return 0;
     }
+
+    /**
+     * @brief Get the faces incident to a given cell.
+     *
+     * @param cell_id The cell index.
+     *
+     * @return MatrixIr of size #faces by 3.  Each row gives the vertex indices
+     */
     MatrixIr get_cell_faces(const size_t cell_id) const
     {
         const size_t num_faces = m_faces.rows();
@@ -55,8 +102,20 @@ public:
         faces.conservativeResize(face_count, 3);
         return faces;
     }
+
+    /**
+     * @brief Get the per-patch cell information.
+     *
+     * @return MatrixIr of size #patches by 2.  Each row gives the indices of the
+     * cells on the positive and negative side of the patch.
+     */
     const MatrixIr& get_cells() const { return m_cells; }
 
+    /**
+     * @brief Get the number of patches.
+     *
+     * @return size_t Number of patches.
+     */
     size_t get_num_patches() const
     {
         if (m_patches.size() > 0)
@@ -64,11 +123,35 @@ public:
         else
             return 0;
     }
+
+    /**
+     * @brief Get the patch indices for each face.
+     *
+     * @return VectorI of size #faces.  Each entry gives the patch index for the
+     * corresponding face.
+     */
     const VectorI& get_patches() const { return m_patches; }
 
+    /**
+     * @brief Get the winding number for each cell.
+     *
+     * @return MatrixIr of size #cells by 1.  Each entry gives the winding number
+     * for the corresponding cell.
+     */
     const MatrixIr& get_winding_number() const { return m_winding_number; }
 
+    /**
+     * @brief Set verbosity.
+     *
+     * @param verbose Whether to output progress messages.
+     */
     void set_verbose(const bool verbose) { m_verbose = verbose; }
+
+    /**
+     * @brief Get verbosity.
+     *
+     * @return Whether to output progress messages.
+     */
     bool get_verbose() const { return m_verbose; }
 
 protected:
