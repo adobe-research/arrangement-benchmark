@@ -135,4 +135,9 @@ It will compute the arrangement of all input meshes and write the output to `out
 
 ### License
 
-TBD.
+The benchmark code is released under the Adobe Research license.
+
+Please see each individual arrangement implementation for their respective licenses.
+* Mesh Arrangement: [LibIGL](https://github.com/libigl/libigl)
+* Fast Arrangement: [FastAndRobustMeshArrangements](https://github.com/gcherchi/FastAndRobustMeshArrangements)
+* Weiler model: [Geogram](https://github.com/BrunoLevy/geogram)
