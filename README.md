@@ -1,6 +1,6 @@
 ## Arrangement Benchmark
 
-This repo interfaces with the following arrangement algorithms:
+This repo benchmarks the following arrangement algorithms:
 
 * Mesh arrangement [^1]
 * Fast and robust mesh arrangement [^2]
