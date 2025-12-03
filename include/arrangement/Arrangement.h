@@ -104,10 +104,10 @@ public:
     }
 
     /**
-     * @brief Get the per-face cell information.
+     * @brief Get the per-patch cell information.
      *
-     * @return MatrixIr of size #faces by 2.  Each row gives the indices of the
-     * cells on the positive and negative side of the face.
+     * @return MatrixIr of size #patches by 2.  Each row gives the indices of the
+     * cells on the positive and negative side of the patch.
      */
     const MatrixIr& get_cells() const { return m_cells; }
 
