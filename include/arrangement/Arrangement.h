@@ -133,10 +133,10 @@ public:
     const VectorI& get_patches() const { return m_patches; }
 
     /**
-     * @brief Get the winding number for each cell.
+     * @brief Get the winding number on each side of faces.
      *
-     * @return MatrixIr of size #cells by 1.  Each entry gives the winding number
-     * for the corresponding cell.
+     * @return MatrixIr of size #faces by 2.  Each entry gives the winding number
+     * on the positive and negative side of the face.
      */
     const MatrixIr& get_winding_number() const { return m_winding_number; }
 
